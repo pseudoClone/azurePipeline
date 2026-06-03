@@ -1,2 +1,7 @@
 .terraform
 secret.tfvars
+.tfstate
+*.tfstate
+*.tfvars
+*.tfstate.*
+tfplan
