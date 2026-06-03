@@ -1,0 +1,28 @@
+name: Build and push to Azure Container Registry
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Yeet the code to Container
+        uses: actions/checkout@v4
+
+      - name: Azure CLI Login for Service Principle
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          client-secret: ${{ secret.AZURE_CLIENT_SECRET }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{secrets.AZURE_SUBSCRIPTION_ID}}
+      
+      - name: ACR Login
+        run: az acr login --name acrprincepipelinejune2026
+
+      - name: Docker build and push
+        run: |
+          docker build -t acrprincepipelinejune2026.azureacr.io/serve-and-log-application:${{ github.sha }} .
+          docker push acrprincepipelinejune2026.azureacr.io/serve-and-log-application:${{ github.sha }}
