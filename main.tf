@@ -48,12 +48,12 @@ resource "azurerm_container_app" "azapp" {
   revision_mode                = "Single"
   # Close old container and create a new one when update happens, saves money for me
 
-#  lifecycle {
-#    ignore_changes = [
-#      template[0].container[0].image
-#      # Because template is nested as list of objects. Which is valid since this is how Kubernetes deploy.yaml workds
-#    ]
-#  }
+  lifecycle {
+    ignore_changes = [
+      template[0].container[0].image
+      # Because template is nested as list of objects. Which is valid since this is how Kubernetes deploy.yaml workds
+    ]
+  }
 
   secret {
     name  = "acr-password"
@@ -69,7 +69,7 @@ resource "azurerm_container_app" "azapp" {
   ingress {
     allow_insecure_connections = false
     external_enabled           = true
-    target_port                = 80
+    target_port                = 8080
     traffic_weight {
       percentage      = 100
       latest_revision = true
