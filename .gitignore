@@ -9,3 +9,4 @@ tfplan
 .venv/
 __pycache__/
 *.pyc
+sp-credential.json
