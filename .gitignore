@@ -5,3 +5,7 @@ secret.tfvars
 *.tfvars
 *.tfstate.*
 tfplan
+
+.venv/
+__pycache__/
+*.pyc
