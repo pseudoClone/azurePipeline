@@ -18,7 +18,7 @@ resource "azurerm_rg_june_2026" "rg_june_2026" {
 
 resource "azurerm_container_registry" "acr" {
         name = "acr_prince_pipeline_project_june_2026"
-        resource_group_name = "azurerm_rg_june_2026.rg_june_2026.name
+        resource_group_name = azurerm_rg_june_2026.rg_june_2026.name
         location = azurerm_rg_june_2026.rg_june_2026.location
         sku = "Basic"
         admin_enabled = true
